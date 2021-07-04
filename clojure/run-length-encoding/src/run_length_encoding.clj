@@ -17,16 +17,6 @@
   (let [n (Integer/parseInt (apply str icl))]
     (apply str (repeat n letter))))
 
-(defn rld-helper [xs icl acc] ; icl = int char list
-  (if (empty? xs)
-    (apply str (reverse acc))
-    (let [x (first xs)]
-      (if (digit? x)
-        (recur (rest xs) (cons x icl) acc)
-        (if (empty? icl)
-          (recur (rest xs) icl (cons (str x) acc))
-          (recur (rest xs) '() (cons (convert-icl icl x) acc)))))))
-
 (defn run-length-decode
   "decodes a run-length-encoded string"
   [cipher-text]
